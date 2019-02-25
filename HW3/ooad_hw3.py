@@ -43,6 +43,7 @@ class Store:
 
 def main():
 	tools = []
+	customer = []
 
 	for i in range(20):
 		choice = np.random.choice(5)
@@ -67,6 +68,8 @@ def main():
 		tools[i] = Store((tools[i]).split(' ')[0], (tools[i]).split(' ')[1])
 
 	for i in range(10):
+		customer[i].append()
+
 		
 
 if __name__ == '__main__':
