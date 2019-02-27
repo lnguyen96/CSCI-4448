@@ -1,7 +1,7 @@
 import numpy as np 
 from abc import ABCMeta, abstractmethod
 
-class Customer(metaclass = ABCMeta):
+class Customer(metaclass = ABCMeta): #Abstract customer class 
 	def __init__(self, name, typeOf):
 		self.name = name
 		self.typeOf = typeOf
@@ -21,7 +21,7 @@ class Customer(metaclass = ABCMeta):
 	def rent(self):
 		pass
 
-class Casual(Customer):
+class Casual(Customer): #Derived Casual customer class
 	def __init__(self, name):
 		self.name = name
 		self.typeOf = "Casual"
@@ -36,7 +36,8 @@ class Casual(Customer):
 		pass
 	def rent(self):
 		pass
-class Regular(Customer):
+
+class Regular(Customer): #Derived Regular customer class
 	def __init__(self, name):
 		self.name = name
 		self.typeOf = "Regular"
@@ -52,7 +53,7 @@ class Regular(Customer):
 	def rent(self):
 		pass
 
-class Business(Customer):
+class Business(Customer): #Derived Business customer class
 	def __init__(self, name):
 		self.name = name
 		self.typeOf = "Business"
@@ -149,10 +150,11 @@ class toolFactory():
 		return tools
 
 class Store:
-	def __init__(self, category, name):
-		self.category = category
-		self.name = name
-		self.available = 1
+	def checkoutCustomer(self, customer, toolArray):
+		if not toolArray:
+			customer.rent()
+
+
 
 class Rental:
 	def __init__(self, rented, day):
@@ -160,13 +162,22 @@ class Rental:
 		self.day = day
 		returnby = 0
 
+def simulate():
+	tools = toolFactory()
+	customers = customerFactory()
+
+
+
+
 def main():
 	
 	tools = toolFactory()
 	print(tools.creation())
 	customers = customerFactory()
 	print(customers.creation().name)
+
+	for i in range(35):
+		simulate()
 		
 if __name__ == '__main__':
-
 	main()
