@@ -1,4 +1,5 @@
 import numpy as np 
+from random import randint
 from abc import ABCMeta, abstractmethod
 
 class Customer(metaclass = ABCMeta): #Abstract customer class 
@@ -6,19 +7,17 @@ class Customer(metaclass = ABCMeta): #Abstract customer class
 		self.name = name
 		self.typeOf = typeOf
 		mintools = 0
-		maxtools = 0
+		maxtools = 3
 		maxrent = 3
 		rents = 0
 		mintime = 0
-		maxtime = 0
+		maxtime = 7
 		pass
 	@property
 	@abstractmethod
-	def rentals(self):
+	def rentals(self): #method for when a customer rents a tool
 		pass
-	def returns(self):
-		pass
-	def rent(self):
+	def returns(self): #method to return tools to the tools array
 		pass
 
 class Casual(Customer): #Derived Casual customer class
@@ -30,12 +29,20 @@ class Casual(Customer): #Derived Casual customer class
 		mintools = 1
 		maxtools = 2
 
-	def rentals(self):
-		pass
-	def returns(self):
-		pass
-	def rent(self):
-		pass
+	def rentals(self, tools):
+		rand = randint(1, 2)
+		toolstaken = []
+		if rand == maxtools:
+			for i in range (maxtools):
+				toolstaken[i] = tools.pop(0)
+		else:
+			toolstaken[0] = tools.pop(0)
+	def returns(self, toolsRented, tools):
+		rand = randint(1, 2)
+		if rand == maxtime:
+			for i in range (maxtime):
+				tools.append(toolsRented[i])
+			del toolsRented[:]
 
 class Regular(Customer): #Derived Regular customer class
 	def __init__(self, name):
@@ -46,12 +53,31 @@ class Regular(Customer): #Derived Regular customer class
 		mintools = 1
 		maxtools = 3
 
-	def rentals(self):
-		pass
-	def returns(self):
-		pass
-	def rent(self):
-		pass
+	def rentals(self, tools):
+		rand = randint(1, 3)
+		toolstaken = []
+		if rand == maxtools:
+			for i in range (maxtools):
+				toolstaken[i] = tools.pop(0)
+		elif rand == maxtools - 1:
+			for i in range (maxtools - 1):
+				toolstaken[i] = tools.pop(0)
+		else:
+			toolstaken[0] = tools.pop(0)
+	def returns(self, toolsRented, tools):
+		rand = randint(3, 5)
+		if rand == maxtime:
+			for i in range (maxtime):
+				tools.append(toolsRented[i])
+				del toolsRented[:]
+		elif rand == maxtime - 1:
+			for i in range (maxtime - 1):
+				tools.append(toolsRented[i])
+				del toolsRented[:]
+		else:
+			for i in range(maxtime - 2):
+				tools.append(toolsRented[i])
+			del toolsRented[:]
 
 class Business(Customer): #Derived Business customer class
 	def __init__(self, name):
@@ -62,12 +88,14 @@ class Business(Customer): #Derived Business customer class
 		mintools = 3
 		maxtools = 3
 
-	def rentals(self):
-		pass
-	def returns(self):
-		pass
-	def rent(self):
-		pass
+	def rentals(self, tools):
+		toolstaken = []
+		for i in range (maxtools):
+			toolstaken[i] = tools.pop(0)
+	def returns(self, toolsRented, tools):
+		for i in range (maxtime):
+			tools.append(toolsRented[i])
+		del toolsRented[:]
 
 class customerFactory:
 	def Casual(name):
@@ -154,20 +182,16 @@ class Store:
 		if not toolArray:
 			customer.rent()
 
-
-
 class Rental:
 	def __init__(self, rented, day):
 		self.rented = rented
 		self.day = day
 		returnby = 0
 
+
 def simulate():
 	tools = toolFactory()
 	customers = customerFactory()
-
-
-
 
 def main():
 	
