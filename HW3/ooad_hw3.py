@@ -92,7 +92,7 @@ class Business(Customer): # Derived Business customer class
 		mintools = 3
 		maxtools = 3
 
-	def rentals(self, tools):
+	def rentals(self, tools): # Rents 3 tools
 		toolstaken = []
 		for i in range (maxtools):
 			toolstaken[i] = tools.pop(0)
