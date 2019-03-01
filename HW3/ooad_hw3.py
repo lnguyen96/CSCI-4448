@@ -160,10 +160,12 @@ class Store:
 	def checkoutCustomer(self, customers, toolArray): # Method to allow customers to rent tools
 		for i, j in enumerate(customers): 
 			if (len(toolArray) >= customers[i].tools): # If the catalog array has enough tools for the type of customer to rent then allow them to rent tools
+				print(customers[i])
 				customers[i].rentals(toolArray) # Call rental method from customer class
 				rental = Rental() # Crete a rental for each purchase
 				print(customers[i].rentals(toolArray))
-				print(rental.createRental(customers[i].rentals(toolArray), customers[i].time))
+
+				#print(rental.createRental(customers[i].rentals(toolArray), customers[i].time))
 			else:
 				pass
 
