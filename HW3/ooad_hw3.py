@@ -31,11 +31,10 @@ class Casual(Customer): #Derived Casual customer class
 		toolstaken = [] # List to track tools
 		for i, j in enumerate(tools):
 			toolstaken.append(tools.pop(0)) # Append it to the tracking list
-			tools.pop(0) # To rent pop the first tool from the catalog
+			return toolstaken
 	def returns(self, toolsRented, tools):
 		for i in range (time):
 			tools.append(toolsRented[i]) # Return the tool back to the catalog
-		del toolsRented[:] # Delete tracking list
 
 class Regular(Customer): #Derived Regular customer class
 	def __init__(self, name):
@@ -48,12 +47,10 @@ class Regular(Customer): #Derived Regular customer class
 		toolstaken = [] # List to track tools
 		for i, j in enumerate(tools):
 			toolstaken.append(tools.pop(0)) # Append it to the tracking list
-			tools.pop(0) # To rent pop the first tool from the catalog
-
+		return toolstaken
 	def returns(self, toolsRented, tools):
 		for i in range (time):
-			tools.append(toolsRented[i]) # Return the tool back to the catalog
-		del toolsRented[:] # Delete tracking list
+			tools.append(toolsRented[i])
 
 class Business(Customer): #Derived Business customer class
 	def __init__(self, name):
@@ -66,11 +63,10 @@ class Business(Customer): #Derived Business customer class
 		toolstaken = []
 		for i, j in enumerate(tools):
 			toolstaken.append(tools.pop(0)) # Append it to the tracking list
-			tools.pop(0) # To rent pop the first tool from the catalog
+		return toolstaken
 	def returns(self, toolsRented, tools):
 		for i in range (time):
 			tools.append(toolsRented[i]) # Return the tool back to the catalog
-		del toolsRented[:] # Delete tracking list
 
 class customerFactory:
 	def Casual(name): # Create casual customer
@@ -160,20 +156,19 @@ class Store:
 	def checkoutCustomer(self, customers, toolArray): # Method to allow customers to rent tools
 		for i, j in enumerate(customers): 
 			if (len(toolArray) >= customers[i].tools): # If the catalog array has enough tools for the type of customer to rent then allow them to rent tools
-				print(customers[i])
+				#print(customers[i].rentals(toolArray))
 				customers[i].rentals(toolArray) # Call rental method from customer class
 				rental = Rental() # Crete a rental for each purchase
-				print(customers[i].rentals(toolArray))
-
-				#print(rental.createRental(customers[i].rentals(toolArray), customers[i].time))
+				#print(customers[i].rentals(toolArray))
+				print(rental.createRental(customers[i].rentals(toolArray), customers[i].time))
 			else:
 				pass
 
 class Rental:
 	def createRental(self, toolsRented, nights): # Create a rental that contains tools rented and how many nights rented for
 		rental = []
-		for item in toolsRented:
-			rental[item] = toolsRented[item]
+		for item, j in enumerate(toolsRented):
+			rental.append(toolsRented[item])
 		rental.append(nights)
 		return rental
 
@@ -183,7 +178,8 @@ def simulate(): # Simulation function creates objects and factories
 	tools.creation()
 	customers.creation()
 	store = Store()
-	print(store.checkoutCustomer(customers.creation(), tools.creation()))
+	store.checkoutCustomer(customers.creation(), tools.creation())
+	#print(store.checkoutCustomer(customers.creation(), tools.creation()))
 
 def main():
 	simulate()
