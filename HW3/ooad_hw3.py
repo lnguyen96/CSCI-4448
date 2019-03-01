@@ -2,7 +2,7 @@ import numpy as np
 from random import randint
 from abc import ABCMeta, abstractmethod
 
-class Customer(metaclass = ABCMeta): # Abstract customer class 
+class Customer(metaclass = ABCMeta): #Abstract customer class 
 	def __init__(self, name, typeOf):
 		self.name = name
 		self.typeOf = typeOf
@@ -12,17 +12,15 @@ class Customer(metaclass = ABCMeta): # Abstract customer class
 		rents = 0
 		mintime = 0
 		maxtime = 7
-
+		pass
 	@property
 	@abstractmethod
-
-	def rentals(self): # method for when a customer rents a tool
+	def rentals(self): #method for when a customer rents a tool
+		pass
+	def returns(self): #method to return tools to the tools array
 		pass
 
-	def returns(self): # method to return tools to the tools array
-		pass
-
-class Casual(Customer): # Derived Casual customer class
+class Casual(Customer): #Derived Casual customer class
 	def __init__(self, name):
 		self.name = name
 		self.typeOf = "Casual"
@@ -39,7 +37,6 @@ class Casual(Customer): # Derived Casual customer class
 				toolstaken[i] = tools.pop(0)
 		else:
 			toolstaken[0] = tools.pop(0)
-
 	def returns(self, toolsRented, tools):
 		rand = randint(1, 2)
 		if rand == maxtime:
@@ -47,7 +44,7 @@ class Casual(Customer): # Derived Casual customer class
 				tools.append(toolsRented[i])
 			del toolsRented[:]
 
-class Regular(Customer): # Derived Regular customer class
+class Regular(Customer): #Derived Regular customer class
 	def __init__(self, name):
 		self.name = name
 		self.typeOf = "Regular"
@@ -56,9 +53,9 @@ class Regular(Customer): # Derived Regular customer class
 		mintools = 1
 		maxtools = 3
 
-	def rentals(self, tools): # Function to keep track of tools rented 
-		rand = randint(1, 3) # Renting 1-3 tools randomly
-		toolstaken = [] # List to track tools
+	def rentals(self, tools):
+		rand = randint(1, 3)
+		toolstaken = []
 		if rand == maxtools:
 			for i in range (maxtools):
 				toolstaken[i] = tools.pop(0)
@@ -67,9 +64,8 @@ class Regular(Customer): # Derived Regular customer class
 				toolstaken[i] = tools.pop(0)
 		else:
 			toolstaken[0] = tools.pop(0)
-
-	def returns(self, toolsRented, tools): # Function to generate how long customer keeps tools
-		rand = randint(3, 5) # 3-5 nights for regular customers
+	def returns(self, toolsRented, tools):
+		rand = randint(3, 5)
 		if rand == maxtime:
 			for i in range (maxtime):
 				tools.append(toolsRented[i])
@@ -83,7 +79,7 @@ class Regular(Customer): # Derived Regular customer class
 				tools.append(toolsRented[i])
 			del toolsRented[:]
 
-class Business(Customer): # Derived Business customer class
+class Business(Customer): #Derived Business customer class
 	def __init__(self, name):
 		self.name = name
 		self.typeOf = "Business"
@@ -92,11 +88,10 @@ class Business(Customer): # Derived Business customer class
 		mintools = 3
 		maxtools = 3
 
-	def rentals(self, tools): # Rents 3 tools
+	def rentals(self, tools):
 		toolstaken = []
 		for i in range (maxtools):
 			toolstaken[i] = tools.pop(0)
-
 	def returns(self, toolsRented, tools):
 		for i in range (maxtime):
 			tools.append(toolsRented[i])
@@ -105,13 +100,10 @@ class Business(Customer): # Derived Business customer class
 class customerFactory:
 	def Casual(name):
 		return(Casual(name))
-
 	def Regular(name):
 		return(Regular(name))
-
 	def Business(name):
 		return(Business(name))
-
 	def creation(name):
 		randint = np.random.choice(3, 1)
 		if randint == 0:
@@ -132,35 +124,30 @@ class Tool(metaclass = ABCMeta):
 class Painting(Tool):
 	def __init__(self, name, typeOf):
 		Tool.__init__(self, name, typeOf)
-
 	def cost(self):
 		return 5
 
 class Concrete(Tool):
 	def __init__(self, name, typeOf):
 		Tool.__init__(self, name, typeOf)
-
 	def cost(self):
 		return 10
 
 class Plumbing(Tool):
 	def __init__(self, name, typeOf):
 		Tool.__init__(self, name, typeOf)
-
 	def cost(self):
 		return 7
 
 class Woodwork(Tool):
 	def __init__(self, name, typeOf):
 		Tool.__init__(self, name, typeOf)
-
 	def cost(self):
 		return 15
 
 class Yardwork(Tool):
 	def __init__(self, name, typeOf):
 		Tool.__init__(self, name, typeOf)
-
 	def cost(self):
 		return 12
 
@@ -188,7 +175,6 @@ class toolFactory():
 
 		for i, item in enumerate(tools):
 			print(tools[i].typeOf)
-
 		return tools
 
 class Store:
@@ -203,8 +189,9 @@ class Rental:
 		returnby = 0
 
 
-def simulate(tools, customers):
-	# TODO
+def simulate():
+	tools = toolFactory()
+	customers = customerFactory()
 
 def main():
 	
