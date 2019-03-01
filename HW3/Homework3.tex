@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{\baselineskip}
+
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\pagestyle{fancy}
+
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+  basicstyle=\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=false,                 
+  captionpos=b,                    
+  keepspaces=false,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+
+%"mystyle" code listing set
+\lstset{style=mystyle}
+
+\begin{document}
+`
+\lhead{{\bf CSCI 4448 \\ Homework 1 \\Spring 2019, CU-Boulder } }
+\rhead{{\bf Edwin Chiang \\ Danny Nguyen \\ Long Nguyen}}
+\renewcommand{\headrulewidth}{0.4pt}
+ 
+\vspace{-3mm}
+ 
+The main few classes used were Store, Customer, Rental, and Tools. Customer has three subclasses that defines the type of customer; whether they are casual, regular or business. They are each a subclass because they all have differing amounts of tools, and time rentals. It makes it easily manageable when a customer type is added or even changed. Each customer has a random generator as to what type they are. Tools follow a similar principle where the subclass makes up it's type which defines the cost needed to rent that type of tool. The creation of tools get put into a tool array to be rented out. The Store class does the bulk of the work. It takes the tools from the tool array logs it in a rental object and gives it to the customer. It manages all the classes so it creates a working store. Rental is associated to store where each object created indicates a transaction between customers and the tools. Our code uses abstraction when we split up tasks based on the methods. Encapsulation can be seen when we used the factories to create tools and customers. %how the program works in general%
+\\
+The UML diagram:\\
+\includegraphics{}
+
+\end{document}
