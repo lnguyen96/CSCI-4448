@@ -12,9 +12,10 @@ class Customer(metaclass = ABCMeta): #Abstract customer class
 		rents = 0
 		mintime = 0
 		maxtime = 7
-		pass
+
 	@property
 	@abstractmethod
+
 	def rentals(self): #method for when a customer rents a tool
 		pass
 	def returns(self): #method to return tools to the tools array
@@ -37,6 +38,7 @@ class Casual(Customer): #Derived Casual customer class
 				toolstaken[i] = tools.pop(0)
 		else:
 			toolstaken[0] = tools.pop(0)
+
 	def returns(self, toolsRented, tools):
 		rand = randint(1, 2)
 		if rand == maxtime:
@@ -53,9 +55,9 @@ class Regular(Customer): #Derived Regular customer class
 		mintools = 1
 		maxtools = 3
 
-	def rentals(self, tools):
-		rand = randint(1, 3)
-		toolstaken = []
+	def rentals(self, tools): # Keep track of tools rented
+		rand = randint(1, 3) # Rent 1-3 tools randomly
+		toolstaken = [] # List to track tools
 		if rand == maxtools:
 			for i in range (maxtools):
 				toolstaken[i] = tools.pop(0)
@@ -64,8 +66,9 @@ class Regular(Customer): #Derived Regular customer class
 				toolstaken[i] = tools.pop(0)
 		else:
 			toolstaken[0] = tools.pop(0)
+
 	def returns(self, toolsRented, tools):
-		rand = randint(3, 5)
+		rand = randint(3, 5) # Keep tools for 3-5 nights
 		if rand == maxtime:
 			for i in range (maxtime):
 				tools.append(toolsRented[i])
@@ -92,6 +95,7 @@ class Business(Customer): #Derived Business customer class
 		toolstaken = []
 		for i in range (maxtools):
 			toolstaken[i] = tools.pop(0)
+
 	def returns(self, toolsRented, tools):
 		for i in range (maxtime):
 			tools.append(toolsRented[i])
@@ -100,10 +104,13 @@ class Business(Customer): #Derived Business customer class
 class customerFactory:
 	def Casual(name):
 		return(Casual(name))
+
 	def Regular(name):
 		return(Regular(name))
+
 	def Business(name):
 		return(Business(name))
+
 	def creation(name):
 		randint = np.random.choice(3, 1)
 		if randint == 0:
