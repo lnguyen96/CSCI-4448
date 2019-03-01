@@ -207,15 +207,17 @@ def simulate(): # Simulation function creates objects and factories
 	tools.creation() # Call method to create objects
 	customers.creation() # Call method to create objects
 	store = Store() # Create instance of store class
+	rev = 0
 	
 	for i in range(35): # Run simulation for 35 nights
 		print("Day - " + str(i)) # Print out what day the simulation is on
-		print("Total revenue: " + str(store.checkoutCustomer(customers.creation(), tools.creation())[1])) # Sum the total daily revenue 
-
+		print("Total Daily Revenue: " + str(store.checkoutCustomer(customers.creation(), tools.creation())[1])) # Sum the total daily revenue 
+		rev += store.checkoutCustomer(customers.creation(), tools.creation())[1]
 		if (days[i % len(days)] == customers.creation()[i % len(customers.creation())].time): # Checks if the customer's rental is out of time
 			customers.creation()[i % len(customers.creation())].returns(store.checkoutCustomer(customers.creation(), tools.creation()), tools.creation()) # Readd tools to the store's catalog 
 			print("Returning - " + str(customers.creation()[i % len(customers.creation())].returns(store.checkoutCustomer(customers.creation(), tools.creation()), tools.creation())))
-
+	print("Total Simulation Revenue: " + str(rev)) 
+	print("Tools Left in Store: " + str(store.checkoutCustomer(customers.creation(), tools.creation())[0]))
 def main():
 	simulate() # Call simulation method
 		
