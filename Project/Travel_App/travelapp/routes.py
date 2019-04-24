@@ -1,7 +1,7 @@
 from flask import render_template, url_for, flash, redirect, request
 from travelapp import app, db, bcrypt
 from travelapp.forms import RegistrationForm, LoginForm
-from travelapp.models import User, Post
+from travelapp.models import User, Car
 from flask_login import login_user, current_user, logout_user, login_required
 
 
