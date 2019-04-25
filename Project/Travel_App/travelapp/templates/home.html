@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='test.css') }}">
 {% block content %}
-    {% for post in posts %}
+    {% for item in posts %}
         <article class="media content-section">
           <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="#">{{ post.author }}</a>
-              <small class="text-muted">{{ post.date_posted }}</small>
-            </div>
-            <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.content }}</p>
+            <p class="article-content">{{ item.start }}</p>
+            <p class="article-content">{{ item.end }}</p>
+            <p class="article-content">{{ item.year }}</p>
+            <p class="article-content">{{ item.make }}</p>
+            <p class="article-content">{{ item.model }}</p>
           </div>
         </article>
     {% endfor %}

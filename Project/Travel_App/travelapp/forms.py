@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from travelapp.models import User
 
@@ -31,3 +31,12 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
+
+
+class Destination(FlaskForm):
+    start = StringField('Start Location', validators=[DataRequired()])
+    end = StringField('End Location', validators=[DataRequired()])
+    year = StringField('Vehicle Year', validators=[DataRequired()])
+    make = StringField('Vehicle Make', validators=[DataRequired()])
+    model = StringField('Vehicle Model', validators=[DataRequired()])
+    submit = SubmitField('Enter')

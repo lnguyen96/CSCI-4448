@@ -30,3 +30,13 @@ class Car(db.Model):
     def __repr__(self):
         return f"User('{self.make}', '{self.model}', '{self.year}')"
 
+class Routes(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    start = db.Column(db.String(120), unique=True, nullable=False)
+    end = db.Column(db.String(120), unique=True, nullable=False)
+    make = db.Column(db.String(20), nullable=False)
+    model = db.Column(db.String(20), nullable=False)
+    year = db.Column(db.Integer, nullable=False)
+
+    def __repr__(self):
+        return f"Routes('{self.start}', '{self.end}', '{self.make}', '{self.model}', '{self.year}')"

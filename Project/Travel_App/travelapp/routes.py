@@ -1,11 +1,10 @@
 from flask import render_template, url_for, flash, redirect, request
 from travelapp import app, db, bcrypt
-from travelapp.forms import RegistrationForm, LoginForm
-from travelapp.models import User, Car
+from travelapp.forms import RegistrationForm, LoginForm, Destination
 from flask_login import login_user, current_user, logout_user, login_required
 
 
-posts = [
+'''posts = [
     {
         'author': 'Corey Schafer',
         'title': 'Blog Post 1',
@@ -18,12 +17,14 @@ posts = [
         'content': 'Second post content',
         'date_posted': 'April 21, 2018'
     }
-]
+]'''
 
+from travelapp.models import User, Car, Routes
 
 @app.route("/")
 @app.route("/home")
 def home():
+    posts = Routes.query.all()
     return render_template('home.html', posts=posts)
 
 
@@ -73,3 +74,16 @@ def logout():
 @login_required
 def account():
     return render_template('account.html', title='Account')
+
+
+@app.route("/route/new", methods=['GET', 'POST'])
+@login_required
+def new_route():
+    form = Destination()
+    if form.validate_on_submit():
+        loc = Routes(start=form.start.data, end=form.end.data, make=form.make.data, model=form.model.data, year=form.year.data)
+        db.session.add(loc)
+        db.session.commit()
+        flash("Location has been entered", "success")
+        return redirect(url_for("home"))
+    return render_template('travel.html', title='Travel', form=form)
