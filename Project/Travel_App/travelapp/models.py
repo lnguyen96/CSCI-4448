@@ -42,3 +42,11 @@ class Routes(db.Model):
 
     def __repr__(self):
         return f"Routes('{self.start}', '{self.end}', '{self.make}', '{self.model}', '{self.year}')"
+
+class Gas(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    cost = db.Column(db.Float, nullable=False)
+
+    def __repr__(self):
+        return f"Gas('{self.name}', '{self.cost}')"
