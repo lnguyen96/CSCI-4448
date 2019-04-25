@@ -20,12 +20,14 @@ class User(db.Model, UserMixin):
 
 class Car(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    year = db.Column(db.Integer, nullable=False)
     make = db.Column(db.String(20), nullable=False)
     model = db.Column(db.String(20), nullable=False)
-    year = db.Column(db.Integer, nullable=False)
-    MPG = db.Column(db.Float, nullable=False)
+    cylinder = db.Column(db.Integer, nullable=False)
     gas = db.Column(db.String(20), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    MPG = db.Column(db.Float, nullable=False)
+    annualFuelCost = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):
         return f"User('{self.make}', '{self.model}', '{self.year}')"
