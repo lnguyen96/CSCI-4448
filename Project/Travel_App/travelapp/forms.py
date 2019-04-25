@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
-from travelapp.models import User
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, IntegerField
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, NumberRange
+from travelapp.models import User, Car
 
 
 class RegistrationForm(FlaskForm):
@@ -36,7 +36,22 @@ class LoginForm(FlaskForm):
 class Destination(FlaskForm):
     start = StringField('Start Location', validators=[DataRequired()])
     end = StringField('End Location', validators=[DataRequired()])
-    year = StringField('Vehicle Year', validators=[DataRequired()])
+    year = IntegerField('Vehicle Year', validators=[DataRequired(), NumberRange(min=2009, message='The car is too old and unsafe to drive. Please use a differnt car')])
     make = StringField('Vehicle Make', validators=[DataRequired()])
     model = StringField('Vehicle Model', validators=[DataRequired()])
     submit = SubmitField('Enter')
+
+    def validate_year(self, year):
+        car = Car.query.filter_by(year=year.data).first()
+        if not car:
+            raise ValidationError('The car is too old and unsafe to drive. Please use a differnt car')
+
+    def validate_make(self, make):
+        car = Car.query.filter_by(make=make.data).first()
+        if not car:
+            raise ValidationError('There is no such make. Please check spelling')
+
+    def validate_model(self, model):
+        car = Car.query.filter_by(model=model.data).first()
+        if not car:
+            raise ValidationError('There is no such model. Please check spelling')
