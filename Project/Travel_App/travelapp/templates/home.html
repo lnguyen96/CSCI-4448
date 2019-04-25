@@ -2,13 +2,24 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='test.css') }}">
 {% block content %}
     {% for item in posts %}
+      <h2><center>{{ current_user.username }}'s Route</center></h2>
         <article class="media content-section">
           <div class="media-body">
+            <div class="row">
+            <div class="col-md-6">
+            <h3>From:</h3>
             <p class="article-content">{{ item.start }}</p>
+            <h3>To:</h3>
             <p class="article-content">{{ item.end }}</p>
-            <p class="article-content">{{ item.year }}</p>
-            <p class="article-content">{{ item.make }}</p>
-            <p class="article-content">{{ item.model }}</p>
+           
+            </div>
+            <div class="col-md-6">
+              <h3>Car Information:</h3>
+              <p class="article-content">{{ item.year }}</p>
+              <p class="article-content">{{ item.make }}</p>
+              <p class="article-content">{{ item.model }}</p>
+            </div>
+          </div>
           </div>
         </article>
     {% endfor %}

@@ -2,23 +2,6 @@ from flask import render_template, url_for, flash, redirect, request
 from travelapp import app, db, bcrypt
 from travelapp.forms import RegistrationForm, LoginForm, Destination
 from flask_login import login_user, current_user, logout_user, login_required
-
-
-'''posts = [
-    {
-        'author': 'Corey Schafer',
-        'title': 'Blog Post 1',
-        'content': 'First post content',
-        'date_posted': 'April 20, 2018'
-    },
-    {
-        'author': 'Jane Doe',
-        'title': 'Blog Post 2',
-        'content': 'Second post content',
-        'date_posted': 'April 21, 2018'
-    }
-]'''
-
 from travelapp.models import User, Car, Routes
 
 @app.route("/")
@@ -67,7 +50,7 @@ def login():
 @app.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for('home'))
+    return redirect(url_for('login'))
 
 
 @app.route("/account")
@@ -87,3 +70,18 @@ def new_route():
         flash("Location has been entered", "success")
         return redirect(url_for("home"))
     return render_template('travel.html', title='Travel', form=form)
+
+@app.route("/route/<int:route_id>")
+def routed(route_id):
+    route = Routes.query.get_or_404(route_id)
+    return render_template("specificroute.html", route=route)
+
+
+@app.route("/route/<int:route_id>/delete")
+@login_required
+def delete_route(route_id):
+    route = Routes.query.get_or_404(route_id)
+    db.session.delete(route)
+    db.session.commit()
+    flash("Your route has been deleted", 'success')
+    return redirect(url_for("home"))
