@@ -2,8 +2,9 @@ from flask import render_template, url_for, flash, redirect, request
 from travelapp import app, db, bcrypt
 from travelapp.forms import RegistrationForm, LoginForm, Destination
 from flask_login import login_user, current_user, logout_user, login_required
-from travelapp.models import User, Car, Routes
+from travelapp.models import User, Car, Routes, Gas
 from travelapp.distanceAPI import getDistance
+from travelapp.distanceAPI import calculateCost
 
 @app.route("/")
 @app.route("/home")
@@ -65,7 +66,14 @@ def account():
 def new_route():
     form = Destination()
     if form.validate_on_submit():
-        loc = Routes(start=form.start.data, end=form.end.data, make=form.make.data, model=form.model.data, year=form.year.data, dist=getDistance(form.start.data, form.end.data))
+        car = Car.query.filter_by(make=form.make.data, model=form.model.data, year=form.year.data).first()
+        milesPer = car.MPG
+        fuelType = car.gas
+        fuelType = fuelType.split()[0]
+        pricePer = Gas.query.filter_by(name=fuelType).first()
+        pricePer = pricePer.cost
+        distance = getDistance(form.start.data, form.end.data)
+        loc = Routes(start=form.start.data, end=form.end.data, make=form.make.data, model=form.model.data, year=form.year.data, dist=distance, cost=calculateCost(distance, pricePer, milesPer))
         db.session.add(loc)
         db.session.commit()
         flash("Location has been entered", "success")

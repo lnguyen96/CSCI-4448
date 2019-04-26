@@ -17,3 +17,9 @@ def getDistance(origin, destination):
     miles = miles.split()[0]
     miles = miles.replace(',', '')
     return(miles)
+
+def calculateCost(distance, pricePer, milesPer):
+    gallons = float(distance)/float(milesPer)
+    cost = gallons*float(pricePer)
+    cost = float("{0:.2f}".format(cost))
+    return (cost)
