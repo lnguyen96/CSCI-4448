@@ -13,4 +13,7 @@ def getDistance(origin, destination):
     directions = json.loads(response)
     routes = directions['routes']
     legs = routes[0]['legs']
-    return(legs[0]['distance']['text'])
+    miles = legs[0]['distance']['text']
+    miles = miles.split()[0]
+    miles = miles.replace(',', '')
+    return(miles)
