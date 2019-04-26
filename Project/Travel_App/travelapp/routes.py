@@ -3,6 +3,7 @@ from travelapp import app, db, bcrypt
 from travelapp.forms import RegistrationForm, LoginForm, Destination
 from flask_login import login_user, current_user, logout_user, login_required
 from travelapp.models import User, Car, Routes
+from travelapp.distanceAPI import getDistance
 
 @app.route("/")
 @app.route("/home")
@@ -64,7 +65,7 @@ def account():
 def new_route():
     form = Destination()
     if form.validate_on_submit():
-        loc = Routes(start=form.start.data, end=form.end.data, make=form.make.data, model=form.model.data, year=form.year.data)
+        loc = Routes(start=form.start.data, end=form.end.data, make=form.make.data, model=form.model.data, year=form.year.data, dist=getDistance(form.start.data, form.end.data))
         db.session.add(loc)
         db.session.commit()
         flash("Location has been entered", "success")
