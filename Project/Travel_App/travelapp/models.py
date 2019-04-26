@@ -39,7 +39,7 @@ class Routes(db.Model):
     make = db.Column(db.String(20), nullable=False)
     model = db.Column(db.String(20), nullable=False)
     year = db.Column(db.Integer, nullable=False)
-    dist = db.Column(db.Integer)
+    dist = db.Column(db.Float)
     cost = db.Column(db.Float)
 
     def __repr__(self):
