@@ -1,10 +1,31 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>
-		<style type=text/css>
-			body {background-color: #9ADBDB;}
-			p {color: #ffffff;}
-		</style>
-    	About Page
-    </h1>
+<style type=text/css>
+	body {background-color:#f96187;}
+	p {color: #ffffff;}
+	.footer {
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		background-color: #f9eaee;
+		font-color: black;
+		text-align: center;
+	}
+</style>
+<h1>
+	<p>About Us:</p>
+</h1>
+<p>
+	DinoCo is a web application made for users to budget their road trips anywhere across the country. 
+</p>
+<p>
+	Navigate around the website using the buttons in the navigation bar.
+</p>
+<p>
+	To access a specific route number the tag is "/route/(Enter Route Number Here)"
+</p>
+<div class="footer">
+	<p><font color="black">Made with &#9829 by: Long Nguyen, Danny Nguyen, and Edwin Chiang</font></p>
+</div>
 {% endblock content %}
