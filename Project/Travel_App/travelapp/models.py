@@ -1,3 +1,7 @@
+'''
+File has classes for all table schema within our database, used to establish ORM functionality with SQLAlchemy
+'''
+
 from travelapp import db, login_manager
 from flask_login import UserMixin
 
