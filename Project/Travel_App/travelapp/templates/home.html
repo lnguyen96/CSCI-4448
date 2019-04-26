@@ -1,7 +1,7 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} 
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='test.css') }}">
 {% block content %}
-{% for item in posts %}
+{% for item in posts %} <!-- flask style of a for loop, loops over items in the database and displays them -->
 <h3>
   Route Number {{item.id}}</h3>
   <article class="media content-section">
@@ -22,6 +22,7 @@
           <p class="article-content">{{ item.year }}</p>
           <p class="article-content">{{ item.make }}</p>
           <p class="article-content">{{ item.model }}</p>
+          <h4>Miles Per Gallon:</h4>
         </div>
       </div>
     </div>

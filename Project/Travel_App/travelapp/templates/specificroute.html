@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} <!-- this page is to view a specific route by number and even displays a map api below it-->
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='test.css') }}">
 {% block content %}
 <article class="media content-section">
@@ -19,6 +19,7 @@
         <p class="article-content">{{ route.year }}</p>
         <p class="article-content">{{ route.make }}</p>
         <p class="article-content">{{ route.model }}</p>
+        <h4>Miles Per Gallon:</h4>
       </div>
       <div class="col-md-2">
         <form action="{{ url_for('delete_route', route_id=route.id) }}">

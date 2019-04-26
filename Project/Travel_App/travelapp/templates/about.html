@@ -1,7 +1,7 @@
-{% extends "layout.html" %} <!-- Each html page extends from layout and inherits certain objects such as the navigation bar -->
+{% extends "layout.html" %}
 {% block content %}
-<style type=text/css> 
-	body {background-color:#f96187;} <!-- style specific to about page -->
+<style type=text/css>
+	body {background-color:#f96187;}
 	p {color: #ffffff;}
 	.footer {
 		position: fixed;
@@ -20,7 +20,7 @@
 	.inner:hover img {
 	  display: block;
 }
-</style><!-- style specific to about page -->
+</style>
 <h1>
 	<p>About Us:</p>
 </h1>
@@ -31,7 +31,7 @@
 	Navigate around the website using the buttons in the navigation bar.
 </p>
 <p>
-	To access a specific route number, the tag is "/route/(Enter Route Number Here)"
+	To access a specific route number the tag is "/route/(Enter Route Number Here)"
 </p>
 <div class="outer">
   <div class="inner">
@@ -39,7 +39,7 @@
     <img src="/static/bts.png" alt="">
   </div>
 </div>
-<div class="footer"> <!-- easter egg -->
+<div class="footer">
 	<p><font color="black">Made with &#9829 by: Long Nguyen, Danny Nguyen, and Edwin Chiang</font></p>
 </div>
 {% endblock content %}
