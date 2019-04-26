@@ -1,4 +1,5 @@
-body {
+/* This file provides specific styling for most of the objects that are created as well as the navigation bar and webpages*/
+body {	/* Each section is inherited thoughout different webpages and applies a unified styling*/
   background: #fafafa;
   color: #333333;
   margin-top: 5rem;

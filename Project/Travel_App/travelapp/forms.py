@@ -1,9 +1,14 @@
+'''
+This file handles all pages in which users enter in data, futhermore, this file has methods which validate their inputs
+to ensure that the data exists within our database
+'''
+
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, IntegerField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, NumberRange
 from travelapp.models import User, Car
 
-
+# Used for validating user registration, queries database to ensure no duplicate usernames/emails
 class RegistrationForm(FlaskForm):
     username = StringField('Username',
                            validators=[DataRequired(), Length(min=2, max=20)])
@@ -24,7 +29,7 @@ class RegistrationForm(FlaskForm):
         if user:
             raise ValidationError('That email is taken. Please choose a different one.')
 
-
+# Used to ensure necessary information is input when logging in
 class LoginForm(FlaskForm):
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
@@ -32,7 +37,7 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
-
+# This class is used for when a user is adding a trip, mainly it's so that users select a car that we have information on
 class Destination(FlaskForm):
     start = StringField('Start Location', validators=[DataRequired()])
     end = StringField('End Location', validators=[DataRequired()])
