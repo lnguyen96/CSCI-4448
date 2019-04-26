@@ -32,7 +32,7 @@ The remaining files are just our data sources that we pulled from Kaggle or comp
 
 We built this program on Python 3.6.3 and assume that you have Python 3 or a later version installed.
 
-First is to download all the files from the **Travel_App** (this should be one level above the directory this README is on) directory and children directory.
+First is to download all the files from the **Travel_App** directory and children directory.
 
 Then in a command terminal, run the command to install the necessary packages
 
