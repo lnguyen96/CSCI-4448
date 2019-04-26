@@ -34,8 +34,8 @@ class Car(db.Model):
 
 class Routes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    start = db.Column(db.String(120), unique=True, nullable=False)
-    end = db.Column(db.String(120), unique=True, nullable=False)
+    start = db.Column(db.String(120), nullable=False)
+    end = db.Column(db.String(120), nullable=False)
     make = db.Column(db.String(20), nullable=False)
     model = db.Column(db.String(20), nullable=False)
     year = db.Column(db.Integer, nullable=False)
