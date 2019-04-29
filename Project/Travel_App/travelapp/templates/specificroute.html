@@ -19,7 +19,6 @@
         <p class="article-content">{{ route.year }}</p>
         <p class="article-content">{{ route.make }}</p>
         <p class="article-content">{{ route.model }}</p>
-        <h4>Miles Per Gallon:</h4>
       </div>
       <div class="col-md-2">
         <form action="{{ url_for('delete_route', route_id=route.id) }}">
