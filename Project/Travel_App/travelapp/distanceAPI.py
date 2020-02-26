@@ -11,7 +11,7 @@ def getDistance(origin, destination):
     origin = origin.replace(' ', '+')
     destination = destination.replace(' ', '+')
     endpoint = 'https://maps.googleapis.com/maps/api/directions/json?'
-    apiKey = 'AIzaSyCD-gN0FQdpkjnD-6yB9EFOf3GypoBaqHk'
+    #apiKey =
     navRequest = 'origin={}&destination={}&key={}'.format(origin, destination, apiKey)
     request = endpoint + navRequest
     response = urllib.request.urlopen(request).read()
